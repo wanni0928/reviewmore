@@ -6,7 +6,19 @@
     <select id="selectMembers" resultType="com.side.revicemore.domain.Member">
         select * from members
     </select>
+
     <select id="findMemberById" parameterType="long" resultType="com.side.revicemore.domain.Member">
-        select * from members where member_id = ${id}
+        select * from members where memberId = #{id}
     </select>
+
+    <select id="findGalleryByMemberId" parameterType="long">
+        select members.memberId, members.memberAccount, gallery.title, gallery.content, gallery.uploadDate
+        from members
+        inner join gallery on members.memberId = gallery.memberId
+        where members.memberId = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true">
+        insert into members (members.memberAccount, members.memberPassword) values(#{account}, #{password});
+    </insert>
 </mapper>

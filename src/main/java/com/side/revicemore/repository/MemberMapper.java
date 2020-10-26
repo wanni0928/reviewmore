@@ -3,14 +3,12 @@ package com.side.revicemore.repository;
 import com.side.revicemore.domain.Member;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
-@Mapper
-public interface MemberMapper {
-    void updateMemberById(Long memberId, String memberAccount, String memberPassword);
-    List<Member> selectMembers();
-    Member findMemberById(Long id);
-    void insert(String account, String password);
-    HashMap<String, Object> findGalleryByMemberId(Long memberId);
+public interface MemberRepository {
+    Member save(Member member);
+    Optional<Member> findById(Long id);
+    Optional<Member> findByName(String name);
+    List<Member> findAll();
 }

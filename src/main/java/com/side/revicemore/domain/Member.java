@@ -1,5 +1,6 @@
 package com.side.revicemore.domain;
 
+import com.side.revicemore.domain.form.MemberForm;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -19,5 +20,10 @@ public class Member {
         this.memberAccount = account;
         this.memberPassword = password;
         this.memberDate = memberDate;
+    }
+
+    public void setMember(MemberForm memberForm){
+        this.memberAccount = memberForm.getAccount();
+        this.memberPassword = memberForm.getPassword();
     }
 }

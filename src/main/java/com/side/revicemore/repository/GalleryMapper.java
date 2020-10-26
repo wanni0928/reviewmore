@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface GalleryRepository {
+public interface GalleryMapper {
     List<Gallery> findAllGalleries();
     void insertGallery(Long id, String title, String content);
     Gallery findById(Long id);

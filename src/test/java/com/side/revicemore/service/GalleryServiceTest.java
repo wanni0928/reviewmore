@@ -1,6 +1,5 @@
 package com.side.revicemore.service;
 
-import com.side.revicemore.domain.Gallery;
 import com.side.revicemore.domain.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

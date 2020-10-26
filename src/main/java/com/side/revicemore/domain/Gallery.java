@@ -1,10 +1,11 @@
 package com.side.revicemore.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Getter
+@Getter @Setter
 public class Gallery {
     private Long galleryId; // pk
     private Long memberId; // fk
@@ -13,7 +14,7 @@ public class Gallery {
     private String author;
     private LocalDateTime uploadDate;
 
-    protected Gallery() {}
+    public Gallery() {}
 
     public Gallery(Long galleryId, Long memberId, String title, String content, String author, LocalDateTime uploadDate) {
         this.galleryId = galleryId;

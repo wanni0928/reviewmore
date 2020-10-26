@@ -4,12 +4,11 @@ import com.side.revicemore.domain.Gallery;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Optional;
 
-@Mapper
-public interface GalleryMapper {
-    List<Gallery> findAllGalleries();
-    void insertGallery(Long id, String title, String content);
-    Gallery findById(Long id);
-    void updateById(Long id, String title, String content);
-    void deleteById(Long id);
+public interface GalleryRepository {
+    Gallery save(Gallery gallery);
+    Optional<Gallery> findById(Long id);
+    Optional<Gallery> findByName(String name);
+    List<Gallery> findAll();
 }

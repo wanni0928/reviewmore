@@ -1,10 +1,12 @@
 package com.side.revicemore.repository;
 
 import com.side.revicemore.domain.Gallery;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-public interface GalleryRepository {
+@Mapper
+public interface GalleryMapper {
     List<Gallery> findAllGalleries();
     void insertGallery(Long id, String title, String content);
     Gallery findById(Long id);

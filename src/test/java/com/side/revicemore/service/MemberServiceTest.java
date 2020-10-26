@@ -87,4 +87,9 @@ class MemberServiceTest {
         System.out.println(galleryByMemberId.values());
 
     }
+
+    @Test
+    void updateMember() {
+        memberService.updateMemberById(1L, "newId", "newPassword");
+    }
 }

@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan
-@MapperScan(basePackages = "com.side.revicemore")
+@MapperScan(basePackages = "com.side.revicemore.repository")
 public class DBConfig {
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {

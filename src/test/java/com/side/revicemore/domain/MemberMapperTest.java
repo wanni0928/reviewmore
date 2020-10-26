@@ -1,6 +1,6 @@
 package com.side.revicemore.domain;
 
-import com.side.revicemore.repository.MemberRepository;
+import com.side.revicemore.repository.MemberMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,9 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 
-class MemberRepositoryTest {
+class MemberMapperTest {
     @Autowired
-    private MemberRepository memberRepository;
+    private MemberMapper memberRepository;
 
 
     @Test

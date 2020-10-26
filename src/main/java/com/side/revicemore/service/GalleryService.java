@@ -1,37 +1,37 @@
 package com.side.revicemore.service;
 
 import com.side.revicemore.domain.Gallery;
-import com.side.revicemore.repository.GalleryRepository;
+import com.side.revicemore.repository.GalleryMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class GalleryService {
-    private final GalleryRepository galleryRepository;
+    private final GalleryMapper galleryMapper;
 
-    public GalleryService(GalleryRepository galleryRepository) {
-        this.galleryRepository = galleryRepository;
+    public GalleryService(GalleryMapper galleryMapper) {
+        this.galleryMapper = galleryMapper;
     }
 
 
     public List<Gallery> findAllGalleries() {
-        return galleryRepository.findAllGalleries();
+        return galleryMapper.findAllGalleries();
     }
 
     public void insertGallery(Long memberId, String title, String content) {
-        galleryRepository.insertGallery(memberId, title, content);
+        galleryMapper.insertGallery(memberId, title, content);
     }
 
     public Gallery findById(Long galleryId) {
-        return galleryRepository.findById(galleryId);
+        return galleryMapper.findById(galleryId);
     }
 
     public void deleteById(Long id){
-        galleryRepository.deleteById(id);
+        galleryMapper.deleteById(id);
     }
 
     public void updateById(Long id, String title, String content) {
-        galleryRepository.updateById(id, title, content);
+        galleryMapper.updateById(id, title, content);
     }
 }

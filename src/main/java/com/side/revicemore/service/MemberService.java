@@ -27,6 +27,10 @@ public class MemberService {
         memberRepository.insert(account, password);
     }
 
+    public void updateMemberById(Long id, String account, String password) {
+        memberRepository.updateMemberById(id, account, password);
+    }
+
     public HashMap<String, Object> findGalleryByMemberId(Long memberId){
         return memberRepository.findGalleryByMemberId(memberId);
     }

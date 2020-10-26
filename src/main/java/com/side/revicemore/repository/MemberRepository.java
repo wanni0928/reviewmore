@@ -2,12 +2,12 @@ package com.side.revicemore.repository;
 
 import com.side.revicemore.domain.Member;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public interface MemberRepository {
-    List<Member> selectMembers();
-    Member findMemberById(Long id);
-    void insert(String account, String password);
-    HashMap<String, Object> findGalleryByMemberId(Long memberId);
+    Member save(Member member);
+    Optional<Member> findById(Long id);
+    Optional<Member> findByName(String name);
+    List<Member> findAll();
 }

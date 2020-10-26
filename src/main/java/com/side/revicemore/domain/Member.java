@@ -2,17 +2,18 @@ package com.side.revicemore.domain;
 
 import com.side.revicemore.domain.form.MemberForm;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Getter
+@Getter @Setter
 public class Member {
     private Long memberId;
     private String memberAccount;
     private String memberPassword;
     private LocalDateTime memberDate;
 
-    protected Member() {
+    public Member() {
     }
 
     public Member(Long id, String account, String password, LocalDateTime memberDate) {

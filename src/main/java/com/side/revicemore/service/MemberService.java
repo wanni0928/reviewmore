@@ -1,7 +1,7 @@
 package com.side.revicemore.service;
 
 import com.side.revicemore.domain.Member;
-import com.side.revicemore.repository.MemberRepository;
+import com.side.revicemore.repository.MemberMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -9,9 +9,9 @@ import java.util.List;
 
 @Service
 public class MemberService {
-    private final MemberRepository memberRepository;
+    private final MemberMapper memberRepository;
 
-    public MemberService(MemberRepository memberRepository) {
+    public MemberService(MemberMapper memberRepository) {
         this.memberRepository = memberRepository;
     }
 

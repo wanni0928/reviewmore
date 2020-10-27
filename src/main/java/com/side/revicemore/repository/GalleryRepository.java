@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface GalleryRepository {
     Gallery save(Gallery gallery);
+    int update(Gallery gallery);
     Optional<Gallery> findById(Long id);
     Optional<Gallery> findByName(String name);
     List<Gallery> findAll();

@@ -11,6 +11,7 @@ public class Member {
     private String memberAccount;
     private String memberPassword;
     private LocalDateTime memberDate;
+    private String memberStatus;
 
     public Member() {
     }
@@ -20,5 +21,16 @@ public class Member {
         this.memberAccount = account;
         this.memberPassword = password;
         this.memberDate = memberDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "memberId=" + memberId +
+                ", memberAccount='" + memberAccount + '\'' +
+                ", memberPassword='" + memberPassword + '\'' +
+                ", memberDate=" + memberDate +
+                ", memberStatus=" + memberStatus +
+                '}';
     }
 }

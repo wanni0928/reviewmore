@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,10 +27,17 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
         Map<String, Object> paraneters = new HashMap<>();
         paraneters.put("memberAccount", member.getMemberAccount());
         paraneters.put("memberPassword", member.getMemberPassword());
+        paraneters.put("memberStatus", member.getMemberStatus());
+        paraneters.put("memberDate", member.getMemberDate());
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(paraneters));
         member.setMemberId(key.longValue());
         return member;
+    }
+
+    @Override
+    public int update(Member member) {
+        return jdbcTemplate.update("update members set memberAccount= ?, memberPassword= ?, memberStatus = ? where memberId = ?", member.getMemberAccount(), member.getMemberPassword(), member.getMemberStatus(), member.getMemberId());
     }
 
     @Override
@@ -51,8 +59,10 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
         return (rs, rowNum) -> {
             Member member = new Member();
             member.setMemberId(rs.getLong("memberId"));
-            member.setMemberAccount("memberAccount");
-            member.setMemberPassword("memberPassword");
+            member.setMemberAccount(rs.getString("memberAccount"));
+            member.setMemberPassword(rs.getString("memberPassword"));
+            member.setMemberStatus(rs.getString("memberStatus"));
+            member.setMemberDate(rs.getObject("memberDate", LocalDateTime.class));
             return member;
         };
     }

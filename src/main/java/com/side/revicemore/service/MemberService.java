@@ -1,11 +1,13 @@
 package com.side.revicemore.service;
 
 import com.side.revicemore.domain.Member;
+import com.side.revicemore.domain.MemberStatus;
 import com.side.revicemore.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -21,7 +23,11 @@ public class MemberService {
     public Long join(Member member) {
         // 같은 이름이 있는지 확인
         validateDuplicateMember(member);
+
+        member.setMemberDate(LocalDateTime.now());
+        member.setMemberStatus(MemberStatus.MEMBER.name());
         memberRepository.save(member);
+
         return member.getMemberId();
     }
 
@@ -32,10 +38,19 @@ public class MemberService {
                 });
     }
 
-    public void updateMember(Long memberId, String memberAccount, String memberPassword) {
-        Member member = findOne(memberId);
-        member.setMemberAccount(memberAccount);
-        member.setMemberPassword(memberPassword);
+    public int updateMember(Long id) {
+        Member member = findOne(id);
+        member.setMemberAccount(member.getMemberAccount());
+        member.setMemberPassword(member.getMemberPassword());
+        // 회원 수정
+        return memberRepository.update(member);
+    }
+
+    public int secession(Long id) {
+        Member member = findOne(id);
+        member.setMemberStatus(MemberStatus.NON_MEMBER.name());
+        // 회원 탈퇴
+        return memberRepository.update(member);
     }
 
     /**

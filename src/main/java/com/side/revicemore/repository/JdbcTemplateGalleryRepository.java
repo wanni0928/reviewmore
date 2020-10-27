@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,11 +29,18 @@ public class JdbcTemplateGalleryRepository implements GalleryRepository {
         parenters.put("title", gallery.getTitle());
         parenters.put("content", gallery.getContent());
         parenters.put("author", gallery.getAuthor());
+        parenters.put("uploadDate", gallery.getUploadDate());
+        parenters.put("galleryStatus", gallery.getGalleryStatus());
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parenters));
         gallery.setGalleryId(key.longValue());
 
         return gallery;
+    }
+
+    @Override
+    public int update(Gallery gallery) {
+        return jdbcTemplate.update("update gallery set title = ?, content = ?, author = ?, galleryStatus = ? where galleryId = ?", gallery.getTitle(), gallery.getContent(), gallery.getAuthor(), gallery.getGalleryStatus(), gallery.getGalleryId());
     }
 
     @Override
@@ -53,10 +61,13 @@ public class JdbcTemplateGalleryRepository implements GalleryRepository {
     private RowMapper<Gallery> galleryRowMapper() {
         return (rs, rowNum) -> {
             Gallery gallery = new Gallery();
+            gallery.setGalleryId(rs.getLong("galleryId"));
             gallery.setMemberId(rs.getLong("memberId"));
-            gallery.setTitle("title");
-            gallery.setContent("content");
-            gallery.setAuthor("author");
+            gallery.setTitle(rs.getString("title"));
+            gallery.setContent(rs.getString("content"));
+            gallery.setAuthor(rs.getString("author"));
+            gallery.setUploadDate(rs.getObject("uploadDate", LocalDateTime.class));
+            gallery.setGalleryStatus(rs.getString("galleryStatus"));
             return gallery;
         };
     }

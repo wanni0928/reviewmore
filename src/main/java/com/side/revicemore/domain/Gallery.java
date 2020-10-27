@@ -13,15 +13,20 @@ public class Gallery {
     private String content;
     private String author;
     private LocalDateTime uploadDate;
+    private String galleryStatus;
 
     public Gallery() {}
 
-    public Gallery(Long galleryId, Long memberId, String title, String content, String author, LocalDateTime uploadDate) {
-        this.galleryId = galleryId;
-        this.memberId = memberId;
-        this.title = title;
-        this.content = content;
-        this.author = author;
-        this.uploadDate = uploadDate;
+    @Override
+    public String toString() {
+        return "Gallery{" +
+                "galleryId=" + galleryId +
+                ", memberId=" + memberId +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", author='" + author + '\'' +
+                ", uploadDate=" + uploadDate +
+                ", galleryStatus=" + galleryStatus +
+                '}';
     }
 }

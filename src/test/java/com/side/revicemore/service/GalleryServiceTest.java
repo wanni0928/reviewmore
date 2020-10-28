@@ -38,8 +38,6 @@ class GalleryServiceTest {
         Member member = new Member();
         member.setMemberAccount("choi");
         member.setMemberPassword("910404@");
-        member.setMemberStatus(MemberStatus.MEMBER.name());
-        member.setMemberDate(LocalDateTime.now());
         Long joinId = memberService.join(member);
 
         Gallery gallery = new Gallery();

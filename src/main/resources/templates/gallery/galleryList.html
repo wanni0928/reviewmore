@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrinkto-fit=no">
+    <title>Hello, world!</title>
+</head>
+<body>
+<div class="container">
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>게시글 번호</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>게시자</th>
+                <th>게시날짜</th>
+                <th>상태</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="gallery : ${galleries}">
+                <td th:text="${gallery.galleryId}"></td>
+                <td th:text="${gallery.title}"></td>
+                <td th:text="${gallery.content}"></td>
+                <td th:text="${gallery.author}"></td>
+                <td th:text="${gallery.uploadDate}"></td>
+                <td th:text="${gallery.galleryStatus}"></td>
+<!--                <td>-->
+<!--                    <a href="#" th:href="@{/items/{id}/edit (id=${item.id})}"-->
+<!--                       class="btn btn-primary" role="button">수정</a>-->
+<!--                </td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
